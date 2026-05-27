@@ -66,12 +66,9 @@ python feishu/writer.py
 
 控制台会输出创建的飞书文档链接。
 
-### 4. 运行完整 AI 工作流（需 DeepSeek API Key）
+### 4. 运行完整 AI 工作流（待实现）
 
-```bash
-export DEEPSEEK_API_KEY="your-api-key"
-python main.py --brief brief.md --blogger references/blogger-profiles.md
-```
+5 步 Agent Pipeline 的 Prompt 设计已全部完成（见 `prompts/` 目录），可直接将对应 System Prompt 粘贴至任意 LLM 工具（Claude、DeepSeek、ChatGPT 等）中执行。完整自动化编排脚本（main.py + DeepSeek API 链式调用）见后续迭代计划。
 
 ---
 
@@ -115,18 +112,19 @@ python main.py --brief brief.md --blogger references/blogger-profiles.md
 
 - **品牌**：轻醒（轻食酸奶）
 - **产品**：0蔗糖高蛋白希腊酸奶（原味/蓝莓/黄桃）
-- **博主**：凌二七（快手健康早餐教程型）
+- **博主**：凌二七（干净饮食食谱博主，2.1万粉丝）
 - **平台**：小红书短视频
-- **脚本时长**：82s / 13镜
+- **脚本时长**：~95s / 16镜
+- **版本**：v2.0（基于博主真实逐字稿校准）
 - **合规结果**：18/18 项检查全部通过
 
 ---
 
 ## 使用工具
 
-- **AI 模型**：DeepSeek API（Prompt 执行）
+- **AI 模型**：Claude Code（调研/脚本生成/飞书集成）+ Prompt 设计兼容 DeepSeek/其他 LLM
 - **飞书 API**：文档自动创建与写入
-- **调研工具**：小红书 + 新榜（newrank.cn）交叉验证
+- **调研工具**：小红书 App + 录屏 ASR 转写（一手信源）+ 新榜交叉验证
 - **脚本语言**：Python 3
 
 ---
