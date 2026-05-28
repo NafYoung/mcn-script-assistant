@@ -131,9 +131,22 @@ python feishu/writer.py --script output/final-script.md --storyboard output/stor
 ## 使用工具
 
 - **AI 模型**：Claude Code（调研/脚本生成/飞书集成）+ Prompt 设计兼容 DeepSeek/其他 LLM
-- **飞书 API**：文档自动创建与写入
-- **调研工具**：小红书 App + 录屏 ASR 转写（一手信源）+ 新榜交叉验证
+- **飞书 API**：文档自动创建与写入（飞书开放平台 docx API）
+- **调研工具**：小红书 App + 录屏 ASR 转写（一手信源）
 - **脚本语言**：Python 3
+
+## 问题排查记录
+
+开发过程中遇到的权限、API 限制及解决方案，详见 `report.md` 第七章，包括：
+
+| 问题 | 解决方案 |
+|------|---------|
+| 小红书静态页面反爬 | 改用 App 录屏 + ASR 转写获取真实逐字稿 |
+| 脚本 v1.0 基于推测而非真实数据 | v2.0 基于三条视频完整逐字稿重写 |
+| 飞书表格 API 格式复杂 | 改用结构化段落排版替代表格 |
+| 飞书手动创建的文档 App 无写入权限 | 改用 API 创建新文档，App 自动获得权限 |
+| 飞书批量写入上限 50 blocks | 实现自动分批写入 |
+| 飞书 bullet/divider block 不支持 | 改用段落 block + 文本前缀模拟 |
 
 ---
 
