@@ -58,17 +58,24 @@ pip install requests
 }
 ```
 
-### 3. 运行飞书文档写入
+### 3. 运行完整 AI 工作流
+
+```bash
+export DEEPSEEK_API_KEY="your-api-key"
+python main.py --brief brief.md --blogger references/blogger-profiles.md
+```
+
+Pipeline 会依次执行 5 步（Brief 拆解 → 风格分析 → 脚本生成 → 合规质检 → 飞书写入），中间产物保存在 `output/` 目录。
+
+### 4. 仅运行飞书文档写入
+
+如果已有脚本文件，可单独写入飞书：
 
 ```bash
 python feishu/writer.py
+# 或指定文件
+python feishu/writer.py --script output/final-script.md --storyboard output/storyboard.md --compliance output/compliance-report.md
 ```
-
-控制台会输出创建的飞书文档链接。
-
-### 4. 运行完整 AI 工作流（待实现）
-
-5 步 Agent Pipeline 的 Prompt 设计已全部完成（见 `prompts/` 目录），可直接将对应 System Prompt 粘贴至任意 LLM 工具（Claude、DeepSeek、ChatGPT 等）中执行。完整自动化编排脚本（main.py + DeepSeek API 链式调用）见后续迭代计划。
 
 ---
 
@@ -100,7 +107,7 @@ python feishu/writer.py
 
 ### 最终飞书文档
 
-**链接**：https://xcnfvm8aee87.feishu.cn/docx/IfHKdZHOWo1jOKxwQh3cv1ZbnZf
+**链接**：https://xcnfvm8aee87.feishu.cn/docx/Aeq7dPcDVoKgtCxwKVMcLy5vnUc
 
 该文档由 `writer.py` 自动化创建并写入，非手动复制粘贴。
 
@@ -112,7 +119,8 @@ python feishu/writer.py
 
 - **品牌**：轻醒（轻食酸奶）
 - **产品**：0蔗糖高蛋白希腊酸奶（原味/蓝莓/黄桃）
-- **博主**：凌二七（干净饮食食谱博主，2.1万粉丝）
+- **调研博主**：3 位候选（凌二七 / Yorifufu / ssikme），经多维度对比后选择凌二七，详见 `references/blogger-profiles.md`
+- **最终选择**：凌二七（干净饮食食谱博主，2.1万粉丝）
 - **平台**：小红书短视频
 - **脚本时长**：~95s / 16镜
 - **版本**：v2.0（基于博主真实逐字稿校准）

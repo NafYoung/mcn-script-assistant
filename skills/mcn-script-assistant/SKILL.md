@@ -107,15 +107,14 @@ output/
 
 ### 依赖
 - Python 3.9+
-- `openai` Python SDK（兼容 DeepSeek API）
-- `lark-oapi` Python SDK（飞书文档写入）
-- DeepSeek API Key（环境变量 `DEEPSEEK_API_KEY`）
+- `requests`（HTTP 调用，LLM API + 飞书 API）
+- DeepSeek API Key（环境变量 `DEEPSEEK_API_KEY` 或 `--api-key` 参数）
 
 ### 运行方式
 
 ```bash
 # 1. 安装依赖
-pip install openai lark-oapi
+pip install requests
 
 # 2. 设置环境变量
 export DEEPSEEK_API_KEY="your-api-key"
